@@ -60,5 +60,5 @@ Enabled the Cancel button to close the Modal component.
 **Getting Started**
 To set up and run the project locally, follow these steps:
 
-Clone the repository: git clone https://github.com/yourusername/property-management.git
+
 Deploy the project to your Salesforce environment using your preferred deployment tool or Salesforce CLI.
