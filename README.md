@@ -62,3 +62,12 @@ To set up and run the project locally, follow these steps:
 
 
 Deploy the project to your Salesforce environment using your preferred deployment tool or Salesforce CLI.
+
+____________________________________________________________________________________________________________________________________________________________________
+
+**Project Screenshots**
+
+Data Model for this Project 
+
+![schema builder](https://github.com/divya609/selfproject/assets/159016990/0d587208-eaea-451b-805f-22a2e6e35749)
+
