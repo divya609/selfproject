@@ -15,7 +15,8 @@ Fields: Deal Name, Property, Buyer, Deal Date, Deal Amount, Status.
 Agent Object
 
 Fields: Agent Name, Contact Information, Experience, Specialization.
-Project Implementation Highlights ✨
+
+**Project Implementation Highlights ✨**
 
 **2. Data Model and Layouts**
 
