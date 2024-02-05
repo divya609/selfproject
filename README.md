@@ -1,26 +1,45 @@
 **Property Selling Client**Project Overview
 Welcome to the Property Selling Management Application on Salesforce! This project streamlines property selling processes with a comprehensive application featuring easy data input, dynamic record displays, and efficient search functionalities for different records, ensuring seamless management of information using Salesforce CRM. The application includes custom objects, triggers, Lightning web components (LWC), and more to streamline property selling processes.
 
-**Project Structure**
-**1. Custom Objects 🛠️**
-Property Object
+**1. Data Model:**
 
-Fields: Property Name, Type, Listing Date, Address, City, State, Property Value, Status.
-Buyer Object
+**Standard Objects:**
+Account:
 
-Fields: Buyer Name, Contact Information, Budget, Preferred Property Type.
-Deal Object
+Fields: Account Name, Type, Billing Address, Shipping Address, Phone, Email.
+Relationship: None.
 
-Fields: Deal Name, Property, Buyer, Deal Date, Deal Amount, Status.
-Agent Object
+**Contact (Person Account for Buyer):**
+
+Fields: First Name, Last Name, Phone, Email, Mailing Address, Buyer Type, Budget, Preferred Property Type.
+Relationship: Related to Account.
+
+**Opportunity (Deal):**
+
+Fields: Opportunity Name, Close Date, Amount, Stage, Type.
+Relationship: Related to Account (Primary Contact will be the Buyer).
+
+**Agent:**
 
 Fields: Agent Name, Contact Information, Experience, Specialization.
+Relationship: None.
+
+**Custom Objects:
+Property:**
+
+Fields: Property Name, Type, Listing Date, Address, City, State, Property Value, Status.
+Relationship: Master-Detail with Opportunity.
+
+**Property Owner:**
+
+Fields: Owner Name, Contact Information, Property Type (Resale/Direct from Builder), Relationship Type (Owner/Tenant).
+Relationship: Master-Detail with Property.
 
 **Project Implementation Highlights ✨**
 
 **2. Data Model and Layouts**
 
-Created a data model with four objects (Property, Buyer, Deal, Agent) with custom fields inside each object.
+Created a data model with custom and standard objects with custom fields inside each object.
 Designed compact layouts and page layouts for each object's record detail page.
 
 
@@ -70,5 +89,4 @@ ________________________________________________________________________________
 
 Data Model for this Project 
 
-![schema builder](https://github.com/divya609/selfproject/assets/159016990/0d587208-eaea-451b-805f-22a2e6e35749)
-
+![Capture](https://github.com/divya609/selfproject/assets/159016990/92101b38-cba0-48d8-aca8-2f547367fb7e)
