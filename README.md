@@ -1,92 +1,57 @@
-**Property Selling Client**Project Overview
-Welcome to the Property Selling Management Application on Salesforce! This project streamlines property selling processes with a comprehensive application featuring easy data input, dynamic record displays, and efficient search functionalities for different records, ensuring seamless management of information using Salesforce CRM. The application includes custom objects, triggers, Lightning web components (LWC), and more to streamline property selling processes.
+**Project Overview**
+Welcome to the Property Selling Management Application on Salesforce! This project simplifies property selling processes through a robust application, enabling easy data input, dynamic record displays, and efficient search functionalities, all seamlessly integrated with Salesforce CRM. Leveraging custom objects, triggers, Lightning web components (LWC), and more, this application aims to enhance property management workflows.
 
-**1. Data Model:**
+**1. **Project Structure
+Custom Objects 🛠️****
 
-**Standard Objects:**
-Account:
+**Account Object (Considered as Property):**
+Fields:
 
-Fields: Account Name, Type, Billing Address, Shipping Address, Phone, Email.
-Relationship: None.
+Property Name, Type (Picklist: 1BHK, 2BHK, etc.), Listing Date (Date), Address (Text), City (Text), State (Text), Property Value (Currency), Status (Picklist: Listed, Sold, Under Contract)
 
-**Contact (Person Account for Buyer):**
+**Lead Object (Person interacting with business):**
+**Fields:**
 
-Fields: First Name, Last Name, Phone, Email, Mailing Address, Buyer Type, Budget, Preferred Property Type.
-Relationship: Related to Account.
+First Name (Text), Last Name (Text), Phone (Phone), Email (Email), Status (Picklist: Open, Contacted, Converted, Closed)
 
-**Opportunity (Deal):**
+**Opportunity Object (Deal):
+Fields:**
 
-Fields: Opportunity Name, Close Date, Amount, Stage, Type.
-Relationship: Related to Account (Primary Contact will be the Buyer).
+Opportunity Name (Text), Close Date (Date), Amount (Currency), Stage (Picklist: Prospecting, Qualification, Proposal, Closed Won, Closed Lost), Type (Picklist: New Business, Existing Business), Related Property (Lookup to Property/Account), Related Lead (Lookup to Lead)
 
-**Agent:**
+**Agent Object (Custom):
+Fields:**
 
-Fields: Agent Name, Contact Information, Experience, Specialization.
-Relationship: None.
-
-**Custom Objects:
-Property:**
-
-Fields: Property Name, Type, Listing Date, Address, City, State, Property Value, Status.
-Relationship: Master-Detail with Opportunity.
-
-**Property Owner:**
-
-Fields: Owner Name, Contact Information, Property Type (Resale/Direct from Builder), Relationship Type (Owner/Tenant).
-Relationship: Master-Detail with Property.
+Agent Name (Text), Contact Information (Phone/Email), Experience (Number), Specialization (Text), Related Property (Lookup to Property/Account)
 
 **Project Implementation Highlights ✨**
 
-**2. Data Model and Layouts**
+**2. **Data** Model and Layouts**
 
-Created a data model with custom and standard objects with custom fields inside each object.
+Created a data model with custom objects and standard objects, with custom fields inside each object.
 Designed compact layouts and page layouts for each object's record detail page.
 
+**3. Triggers**
 
-**3. **Data Import****
+Implemented triggers on the Opportunity object.
+Trigger on Opportunity: Automates processes when an opportunity is created or updated.
 
-Utilized Salesforce Data Loader to import data into the Salesforce org.
-Custom App and Page
-
-Created a custom app using App Manager and designed a custom app page using Lightning App Builder.
-
-**4. **Triggers****
-
-Implemented triggers on the Property and Deal objects.
-Trigger on Property: Automates processes when a property is listed or sold.
-Trigger on Deal: Updates property and buyer information when a deal is closed.
-
-**5. **Test Classes****
+**4. Test Classes**
 
 Developed test classes for triggers and Apex Controllers with 100% code coverage.
 Created a Test Utility class containing methods to create test data for testing purposes.
 
-**6. Lightning Web Components (LWC)**
+**5. Lightning Web Components (LWC)**
 
-Developed LWC components to display related Property and Buyer information on the Deal record detail page using lightning-record-form.
-Developed LWC components to display and search Property, Buyer, Deal, and Agent records using lightning-datatable and Apex Controllers.
+Developed LWC components to display related Opportunity and Lead information on the Opportunity record detail page using lightning-record-form.
+Developed LWC components to display and search Opportunity, Lead, and Agent records using lightning-datatable and Apex Controllers.
 
-**7. Infinite Scrolling**
+**7. LWC Modal Components**
 
-Implemented infinite scrolling to efficiently load and display all records using the enable-infinite-loading attribute of lightning-datatable.
-
-**8. LWC Modal Components**
-
-Created modal components for Property, Buyer, Deal, and Agent records using lightning-modal base component.
+Created modal components for Opportunity, Lead, and Agent records using lightning-modal base component.
 Enabled the Save button to save records efficiently using createRecord(recordInput) method from lightning/uiRecordApi.
 Enabled the Cancel button to close the Modal component.
 
+**8. Integration with Mortgage Calculator (LWC)**
 
-**Getting Started**
-To set up and run the project locally, follow these steps:
-
-
-Deploy the project to your Salesforce environment using your preferred deployment tool or Salesforce CLI.
-
-____________________________________________________________________________________________________________________________________________________________________
-
-**Project Screenshots**
-
-Data Model for this Project 
-
-![Capture](https://github.com/divya609/selfproject/assets/159016990/92101b38-cba0-48d8-aca8-2f547367fb7e)
+Integrated with a mortgage calculator built with LWC to provide real-time financial insights, enhancing the buyer's property affordability details.
