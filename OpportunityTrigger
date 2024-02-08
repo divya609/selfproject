@@ -1,0 +1,3 @@
+trigger OpportunityTrigger on Opportunity (before update) {
+    OpportunityDiscountHandler.processOpportunities(Trigger.new);
+}
