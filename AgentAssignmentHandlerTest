@@ -1,0 +1,33 @@
+@isTest
+private class AgentAssignmentHandlerTest {
+
+    @isTest
+    static void testAgentAssignment() {
+        // Create test Agent records
+        Agent__c agent1 = new Agent__c(
+            Name = 'Test Agent 1',
+            Specialization__c = '2BHK',
+            Availability__c = true);
+        insert agent1;
+        
+        // Create test Account (Property) record
+        Account testAccount = new Account(
+            Name = 'Test Property',
+            Type = '2BHK');
+        insert testAccount;
+        
+        // Refresh testAccount from database to simulate after insert context
+        testAccount = [SELECT Id, Type, Assigned_Agent__c FROM Account WHERE Id = :testAccount.Id];
+        
+        // Update the test Account to trigger the assignment logic
+        testAccount.Name = 'Updated Test Property';
+        update testAccount;
+        
+        // Re-query the Account to check if an Agent was assigned
+        testAccount = [SELECT Id, Type, Assigned_Agent__c FROM Account WHERE Id = :testAccount.Id];
+        
+        // Assertions to verify the Agent was assigned correctly
+        System.assertNotEquals(null, testAccount.Assigned_Agent__c, 'An agent should be assigned to the account.');
+        System.assertEquals(agent1.Id, testAccount.Assigned_Agent__c, 'The assigned agent should match the expected agent.');
+    }
+}
