@@ -1,0 +1,47 @@
+public class AgentAssignmentHandler {
+    public static void assignAgentstoAccount(List<Account> newOrUpdatedAccounts) {
+        // Collect Account IDs to optimize SOQL query
+        Set<Id> accountIds = new Set<Id>();
+        for (Account acc : newOrUpdatedAccounts) {
+            accountIds.add(acc.Id);
+        }
+
+        // Re-query Accounts for editable instances
+        List<Account> editableAccounts = [SELECT Id, Type FROM Account WHERE Id IN :accountIds];
+
+        // Collect Account types to optimize SOQL query
+        Set<String> accountTypes = new Set<String>();
+        for (Account acc : editableAccounts) {
+            accountTypes.add(acc.Type);
+        }
+
+        // Find available Agents whose specialization matches Account types
+        List<Agent__c> availableAgents = [SELECT Id, Specialization__c FROM Agent__c WHERE Specialization__c IN :accountTypes AND Availability__c = true];
+
+        // Map to hold Specialization to Agents
+        Map<String, List<Agent__c>> specToAgentsMap = new Map<String, List<Agent__c>>();
+        for (Agent__c agent : availableAgents) {
+            if (!specToAgentsMap.containsKey(agent.Specialization__c)) {
+                specToAgentsMap.put(agent.Specialization__c, new List<Agent__c>());
+            }
+            specToAgentsMap.get(agent.Specialization__c).add(agent);
+        }
+
+        // Prepare list for updates
+        List<Account> accountsToUpdate = new List<Account>();
+        
+        for (Account acc : editableAccounts) {
+            if (specToAgentsMap.containsKey(acc.Type) && !specToAgentsMap.get(acc.Type).isEmpty()) {
+                // Just taking the first available agent for simplicity; implement your own logic as needed
+                Agent__c assignedAgent = specToAgentsMap.get(acc.Type)[0];
+                acc.Assigned_Agent__c = assignedAgent.Id;
+                accountsToUpdate.add(acc);
+            }
+        }
+
+        // Perform update operation
+        if (!accountsToUpdate.isEmpty()) {
+            update accountsToUpdate;
+        }
+    }
+}
