@@ -1,0 +1,42 @@
+@isTest
+private class OpportunityDiscountHandlerTest {
+    @isTest static void testOpportunityDiscountLogic() {
+        // Create and insert a test Opportunity with >15% discount
+        Opportunity testOpp1 = new Opportunity(
+            Name = 'Test Opportunity 1',
+            CloseDate = System.today().addDays(30),
+            StageName = 'Negotiation/Review',
+            Amount = 10000,
+            Discount_Percentage__c = 18 // Custom field for discount percentage
+        );
+        insert testOpp1;
+
+        // Create and insert a test Opportunity with >20% discount and Closed Won stage
+        Opportunity testOpp2 = new Opportunity(
+            Name = 'Test Opportunity 2',
+            CloseDate = System.today().addDays(30),
+            StageName = 'Closed Won',
+            Amount = 10000,
+            Discount_Percentage__c = 25 // Custom field for discount percentage
+        );
+        insert testOpp2;
+
+        // Update the Opportunities to trigger the logic
+        testOpp1.StageName = 'Closed Won';
+        testOpp2.StageName = 'Closed Won'; // Corrected stage to Closed Won
+        update new List<Opportunity>{testOpp1, testOpp2};
+
+        // Assertions to verify the log creation and Opportunity update
+        List<OpportunityDiscountLog__c> logs = [SELECT OpportunityId__c, ActionTaken__c FROM OpportunityDiscountLog__c];
+        System.assertNotEquals(0, logs.size(), 'Expected at least one log entry to be created.');
+
+        for (OpportunityDiscountLog__c log : logs) {
+            if (log.OpportunityId__c == testOpp1.Id) {
+                System.assertEquals('Submitted for Approval', log.ActionTaken__c, 'Opportunity 1 should be submitted for approval.');
+            }
+            if (log.OpportunityId__c == testOpp2.Id) {
+                System.assertEquals('Flagged for Review', log.ActionTaken__c, 'Opportunity 2 should be flagged for review.');
+            }
+        }
+    }
+}
