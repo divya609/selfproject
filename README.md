@@ -24,6 +24,10 @@ Fields:**
 
 Agent Name (Text), Contact Information (Phone/Email), Experience (Number), Specialization (Text), Related Property (Lookup to Property/Account)
 
+**OpportunityDiscountLog (custom)
+Fields:**
+OpportunityId__c(text), ActionTaken__c (Text), DiscountPercentage__c (Number(5,2)), ActionDate__c (Date/Time)
+
 **Project Implementation Highlights ✨**
 
 **2. **Data** Model and Layouts**
