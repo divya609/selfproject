@@ -1,0 +1,32 @@
+public class OpportunityDiscountHandler {
+    public static void processOpportunities(List<Opportunity> updatedOpportunities) {
+        List<OpportunityDiscountLog__c> logs = new List<OpportunityDiscountLog__c>();
+        
+        for (Opportunity opp : updatedOpportunities) {
+            // Check for Negotiation/Review stage with >15% discount
+            if (opp.StageName == 'Negotiation/Review' && opp.Discount_Percentage__c > 15) {
+                // Logic to submit for approval (simplified for example)
+                // Here, you'd integrate with your org's approval process
+
+                // Log the submission
+                logs.add(new OpportunityDiscountLog__c(
+                    OpportunityId__c = opp.Id,
+                    ActionTaken__c = 'Submitted for Approval',
+                    DiscountPercentage__c = opp.Discount_Percentage__c,
+                    ActionDate__c = DateTime.now()
+                ));
+            }
+            // Check for Closed Won Opportunities with >20% discount
+            else if (opp.StageName == 'Closed Won' && opp.Discount_Percentage__c > 20) {
+                // Flag for review
+                opp.Needs_Review__c = true; // Assuming there's a custom field for flagging
+                
+                // Log the flagging
+                logs.add(new OpportunityDiscountLog__c(
+                    OpportunityId__c = opp.Id,
+                    ActionTaken__c = 'Flagged for Review',
+                    DiscountPercentage__c = opp.Discount_Percentage__c,
+                    ActionDate__c = DateTime.now()
+                ));
+            }
+        }
