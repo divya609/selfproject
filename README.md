@@ -37,8 +37,9 @@ Designed compact layouts and page layouts for each object's record detail page.
 
 **3. Triggers**
 
-Implemented triggers on the Opportunity object.
-Trigger on Opportunity: Automates processes when an opportunity is created or updated.
+Implemented triggers on the Opportunity and Account object.
+Trigger on Opportunity for Discount approval: Automates processes when an opportunity is created or updated.
+Trigger on Account to assign agents : Populates Agents to Account(property) based on agent specialization and availability.
 
 **4. Test Classes**
 
