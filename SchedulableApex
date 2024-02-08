@@ -1,0 +1,16 @@
+global class PropertyValueAdjustmentBatch implements Schedulable {
+    global void execute(SchedulableContext SC) {
+        // Retrieve a list of Accounts with a specified Property_Status and Listing_Date criteria.
+        List<Account> propertiesToUpdate = [SELECT Id, Property_Value__c    
+                                            FROM Account
+                                            WHERE Property_Status__c = 'Listed'
+                                            AND Listing_Date__c = LAST_N_DAYS:50];
+        // Iterate through each retrieved Account record.
+        for(Account property : propertiesToUpdate) {
+            // Adjust the Property_Value__c field by reducing it by 2%.
+            property.Property_Value__c *= 0.98; // Reduce value by 2%
+        }
+        // Update the list of properties with the adjusted Property_Value__c values.
+        update propertiesToUpdate;
+    }
+}
