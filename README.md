@@ -49,3 +49,5 @@ Created a Test Utility class containing methods to create test data for testing 
 **5. Lightning Web Components (LWC)**
 
 The LoanCalculator LWC offers a quick and easy way for Salesforce users to calculate monthly payments on loans, including mortgages, auto, and personal loans. It provides dynamic, real-time calculations using principal amount, interest rate, and loan term inputs, all within the familiar Salesforce UI. This component is designed to enhance financial planning and decision-making directly within Salesforce, ensuring a seamless and integrated user experience.
+![Capture](https://github.com/divya609/selfproject/assets/159016990/d8381dba-c943-4e5d-9f1d-d8a264d95c16)
+
