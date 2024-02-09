@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Loan Calculator" icon-name="standard:currency">
+        <div class="slds-p-around_medium">
+            <lightning-input label="Loan Amount ($)"
+                             type="number"
+                             value={loanAmount}
+                             onchange={handleLoanAmountChange}>
+            </lightning-input>
+            <lightning-input label="Annual Interest Rate (%)"
+                             type="number"
+                             value={interestRate}
+                             onchange={handleInterestRateChange}>
+            </lightning-input>
+            <lightning-input label="Loan Term (Years)"
+                             type="number"
+                             value={loanTerm}
+                             onchange={handleLoanTermChange}>
+            </lightning-input>
+            <lightning-button variant="brand"
+                              label="Calculate"
+                              title="Calculate"
+                              onclick={calculateMonthlyPayment}
+                              class="slds-m-top_medium">
+            </lightning-button>
+            <p class="slds-m-top_medium">
+                Monthly Payment: <b>${monthlyPayment}</b>
+            </p>
+        </div>
+    </lightning-card>
+</template>
