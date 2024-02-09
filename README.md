@@ -48,15 +48,4 @@ Created a Test Utility class containing methods to create test data for testing 
 
 **5. Lightning Web Components (LWC)**
 
-Developed LWC components to display related Opportunity and Lead information on the Opportunity record detail page using lightning-record-form.
-Developed LWC components to display and search Opportunity, Lead, and Agent records using lightning-datatable and Apex Controllers.
-
-**7. LWC Modal Components**
-
-Created modal components for Opportunity, Lead, and Agent records using lightning-modal base component.
-Enabled the Save button to save records efficiently using createRecord(recordInput) method from lightning/uiRecordApi.
-Enabled the Cancel button to close the Modal component.
-
-**8. Integration with Mortgage Calculator (LWC)**
-
-Integrated with a mortgage calculator built with LWC to provide real-time financial insights, enhancing the buyer's property affordability details.
+The LoanCalculator LWC offers a quick and easy way for Salesforce users to calculate monthly payments on loans, including mortgages, auto, and personal loans. It provides dynamic, real-time calculations using principal amount, interest rate, and loan term inputs, all within the familiar Salesforce UI. This component is designed to enhance financial planning and decision-making directly within Salesforce, ensuring a seamless and integrated user experience.
