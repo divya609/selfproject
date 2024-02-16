@@ -1,27 +1,38 @@
+<!-- Loan Calculator Component -->
 <template>
+    <!-- Lightning Card to encapsulate the calculator UI with a title and standard currency icon -->
     <lightning-card title="Loan Calculator" icon-name="standard:currency">
         <div class="slds-p-around_medium">
+            <!-- Loan Amount Input: Captures the principal amount of the loan from the user -->
             <lightning-input label="Loan Amount ($)"
                              type="number"
                              value={loanAmount}
                              onchange={handleLoanAmountChange}>
             </lightning-input>
+            
+            <!-- Annual Interest Rate Input: Captures the annual interest rate of the loan -->
             <lightning-input label="Annual Interest Rate (%)"
                              type="number"
                              value={interestRate}
                              onchange={handleInterestRateChange}>
             </lightning-input>
+            
+            <!-- Loan Term Input: Captures the duration of the loan in years -->
             <lightning-input label="Loan Term (Years)"
                              type="number"
                              value={loanTerm}
                              onchange={handleLoanTermChange}>
             </lightning-input>
+            
+            <!-- Calculate Button: Triggers the calculation of the monthly payment based on input values -->
             <lightning-button variant="brand"
                               label="Calculate"
                               title="Calculate"
                               onclick={calculateMonthlyPayment}
                               class="slds-m-top_medium">
             </lightning-button>
+            
+            <!-- Display Monthly Payment: Shows the calculated monthly payment amount -->
             <p class="slds-m-top_medium">
                 Monthly Payment: <b>${monthlyPayment}</b>
             </p>
